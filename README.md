@@ -2,14 +2,8 @@
 
 ### [Demo](TODO: Link it!)
 
-# power-simulator
-A simple simulator app that simulates the operation of a power producing plant
-
-For simplicity, this simulator assumes that there are essentially two types of power producing
-plants:
-
-1. A PowerPlant that is steerable by turning it on or off (ex., battery)
-2. A PowerPlant that is steerable by ramping it up (ex., generators, gas turbines)
+# power-simulator-ui
+TODO
 
 ## Dependencies
 
@@ -58,4 +52,4 @@ TODO:
 
 ## Acknowledgments
 
-* This template is from[https://thinkster.io](https://github.com/gothinkster/angular-realworld-example-app) 
+* This template is from [https://thinkster.io](https://github.com/gothinkster/angular-realworld-example-app) 
