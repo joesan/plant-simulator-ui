@@ -2,7 +2,7 @@
 
 ### [Demo](TODO: Link it!)
 
-# power-simulator-ui
+# plant-simulator-ui
 TODO
 
 ## Dependencies
