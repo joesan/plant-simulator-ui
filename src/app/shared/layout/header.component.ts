@@ -4,16 +4,16 @@ import { User } from '../models';
 import { UserService } from '../services';
 
 @Component({
-  selector: 'layout-header',
+  selector: 'app-layout-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    private userService: UserService
-  ) {}
 
   currentUser: User;
 
+  constructor(
+    private userService: UserService
+  ) {}
   ngOnInit() {
     this.userService.currentUser.subscribe(
       (userData) => {

@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleListConfig, TagsService, UserService } from '../shared';
+import { ArticleListConfig, TagsService, PowerPlantService, UserService } from '../shared';
 
 @Component({
-  selector: 'home-page',
+  selector: 'app-home-page',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private tagsService: TagsService,
-    private userService: UserService
-  ) {}
 
   isAuthenticated: boolean;
   listConfig: ArticleListConfig = new ArticleListConfig();
   tags: Array<string> = [];
   tagsLoaded = false;
+
+  constructor(
+    private router: Router,
+    private tagsService: TagsService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.userService.isAuthenticated.subscribe(

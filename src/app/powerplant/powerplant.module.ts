@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Article, ArticlesService } from '../shared';
 
 @Component({
-  selector: 'editor-page',
-  templateUrl: './editor.component.html'
+  selector: 'app-powerplant-page',
+  templateUrl: './powerplant.component.html'
 })
 export class EditorComponent implements OnInit {
   article: Article = new Article();
@@ -66,14 +66,14 @@ export class EditorComponent implements OnInit {
 
     // post the changes
     this.articlesService
-    .save(this.article)
-    .subscribe(
-      article => this.router.navigateByUrl('/article/' + article.slug),
-      err => {
-        this.errors = err;
-        this.isSubmitting = false;
-      }
-    );
+      .save(this.article)
+      .subscribe(
+        article => this.router.navigateByUrl('/article/' + article.slug),
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      );
   }
 
   updateArticle(values: Object) {
