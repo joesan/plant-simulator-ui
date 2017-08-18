@@ -9,17 +9,36 @@
           <fieldset [disabled]="isSubmitting">
 
             <fieldset class="form-group">
-              <input class="form-control form-control-lg"
-                     formControlName="title"
+              Organization Name
+              <input class="form-control"
+                     formControlName="orgName"
                      type="text"
-                     placeholder="Article Title" />
+                     placeholder="Enter a valid organization name*" />
             </fieldset>
 
             <fieldset class="form-group">
+              Description
               <input class="form-control"
-                     formControlName="description"
+                     formControlName="orgDescription"
                      type="text"
-                     placeholder="What's this article about?" />
+                     placeholder="What's this PowerPlant about?" />
+            </fieldset>
+
+            <fieldset class="form-group"><div class="form-min-max-power-input">
+              Minimum Power in kw
+              <input class="form-control"
+                     formControlName="minPower"
+                     maxlength="4"
+                     type="text"
+                     required
+                     placeholder="Minimum power capacity in kw" /></div><div class="form-min-max-power-input">
+              Maximum Power in kw
+              <input class="form-control"
+                     formControlName="maxPower"
+                     maxlength="4"
+                     type="text"
+                     required
+                     placeholder="Maximum power capacity in kw" /></div>
             </fieldset>
 
             <fieldset class="form-group">
@@ -46,8 +65,8 @@
               </div>
             </fieldset>
 
-            <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
-              Submit
+            <button class="btn btn-lg btn-primary" type="button" (click)="submitForm()">
+              Add New PowerPlant
             </button>
 
           </fieldset>

@@ -9,55 +9,85 @@
           <fieldset [disabled]="isSubmitting">
 
             <fieldset class="form-group">
-              Organization Name<input class="form-control"
-                formControlName="orgName"
-                type="text"
-                placeholder="Enter a valid organization name*" />
+              Organization Name
+              <input class="form-control"
+                    formControlName="orgName"
+                    type="text"
+                    placeholder="Enter a valid organization name*" />
             </fieldset>
 
             <fieldset class="form-group">
-              Description<input class="form-control"
-                formControlName="orgDescription"
-                type="text"
-                placeholder="What's this PowerPlant about?" />
+              Description
+              <input class="form-control"
+                    formControlName="orgDescription"
+                    type="text"
+                    placeholder="What's this PowerPlant about?" />
             </fieldset>
 
             <fieldset class="form-group"><div class="form-min-max-power-input">
-              Minimum Power in kw<input class="form-control"
-                formControlName="minPower"
-                maxlength="4"
-                type="text"
-                placeholder="Minimum power capacity in kw" /></div><div class="form-min-max-power-input">
-              Maximum Power in kw<input class="form-control"
-                formControlName="maxPower"
-                maxlength="4"
-                type="text"
-                placeholder="Maximum power capacity in kw" /></div>
+              Minimum Power in kw
+              <input class="form-control"
+                    formControlName="minPower"
+                    maxlength="4"
+                    type="text"
+                    placeholder="Minimum power capacity in kw" /></div><div class="form-min-max-power-input">
+              Maximum Power in kw
+              <input class="form-control"
+                    formControlName="maxPower"
+                    maxlength="4"
+                    type="text"
+                    placeholder="Maximum power capacity in kw" /></div>
+            </fieldset>
+
+            /* TODO: This should be a drop down */
+            <fieldset class="form-group">
+              PowerPlantType
+              <input class="form-control"
+                     formControlName="powerPlantType"
+                     type="text"
+                     placeholder="OnOffType or RampUpType" />
+            </fieldset>
+
+            /* TODO: This should be shown only when the type is RampUpType */
+            /* TODO: Add validation for ramp rate kw and seconds */
+            <fieldset class="form-group"><div class="form-min-max-power-input">
+              Ramp rate in kw
+              <input class="form-control"
+                     formControlName="minPower"
+                     maxlength="4"
+                     type="text"
+                     placeholder="How fast to ramp up in kw" /></div><div class="form-min-max-power-input">
+              Ramp rate in seconds
+              <input class="form-control"
+                     formControlName="maxPower"
+                     maxlength="4"
+                     type="text"
+                     placeholder="How frequent to ramp up in seconds" /></div>
             </fieldset>
 
             <fieldset class="form-group">
               <textarea class="form-control"
-                formControlName="body"
-                rows="8"
-                placeholder="Write your article (in markdown)">
+                    formControlName="body"
+                    rows="8"
+                    placeholder="Write your article (in markdown)">
               </textarea>
             </fieldset>
 
-            <fieldset class="form-group">
+            <!-- fieldset class="form-group">
               <input class="form-control"
-                type="text"
-                placeholder="Enter tags"
-                [formControl]="tagField"
-                (keyup.enter)="addTag()" />
+                     type="text"
+                     placeholder="Enter tags"
+                     [formControl]="tagField"
+                     (keyup.enter)="addTag()" />
 
               <div class="tag-list">
                 <span *ngFor="let tag of article.tagList"
-                  class="tag-default tag-pill">
+                      class="tag-default tag-pill">
                   <i class="ion-close-round" (click)="removeTag(tag)"></i>
                   {{ tag }}
                 </span>
               </div>
-            </fieldset>
+            </fieldset -->
 
             <button class="btn btn-lg btn-primary" type="button" (click)="submitForm()">
               Add New PowerPlant
