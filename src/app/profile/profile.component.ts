@@ -4,18 +4,18 @@ import { ActivatedRoute } from '@angular/router';
 import { User, UserService, Profile } from '../shared';
 
 @Component({
-  selector: 'profile-page',
+  selector: 'app-profile-page',
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) {}
 
   profile: Profile;
   currentUser: User;
   isUser: boolean;
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -30,13 +30,9 @@ export class ProfileComponent implements OnInit {
         );
       }
     );
-
-
-
   }
 
   onToggleFollowing(following: boolean) {
     this.profile.following = following;
   }
-
 }

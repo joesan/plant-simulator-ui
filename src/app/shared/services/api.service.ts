@@ -9,6 +9,8 @@ import { JwtService } from './jwt.service';
 
 @Injectable()
 export class ApiService {
+  loading: boolean;
+  data: Object;
   constructor(
     private http: Http,
     private jwtService: JwtService
@@ -28,6 +30,15 @@ export class ApiService {
 
   private formatErrors(error: any) {
      return Observable.throw(error.json());
+  }
+
+  fetchAllPowerPlants(active: boolean): void {
+    this.loading = true;
+    this.http.request('http://localhost:9000/powerPlants?active=${active}')
+      .subscribe((res: Response) => {
+        this.data = res.json(); // TODO: Map this response type to PowerPlant typescript
+        this.loading = false;
+      });
   }
 
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
