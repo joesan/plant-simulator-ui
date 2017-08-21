@@ -36,7 +36,7 @@ export class ApiService {
     this.loading = true;
     this.http.request('http://localhost:9000/powerPlants?active=${active}')
       .subscribe((res: Response) => {
-        this.data = res.json(); // TODO: Map this response type to PowerPlant typescript
+        this.data = res.json(); // TODO: Map this response type to PowerPlant typescript type
         this.loading = false;
       });
   }

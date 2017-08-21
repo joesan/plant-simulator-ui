@@ -30,7 +30,6 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    PowerplantComponent,
     PowerplantComponent
   ],
   imports: [
