@@ -5,5 +5,6 @@ export class PowerPlant {
   orgName: string;
   minPower: string;
   maxPower: boolean;
+  // TODO: add rampRateSeconds and rampPowerRate
   powerPlantType: PowerPlantType;
 }
