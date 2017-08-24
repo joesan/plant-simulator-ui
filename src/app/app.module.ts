@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ArticleModule } from './article/article.module';
 import { AuthModule } from './auth/auth.module';
 import { HomeModule } from './home/home.module';
 import { ProfileModule } from './profile/profile.module';
@@ -34,7 +33,6 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
   ],
   imports: [
     BrowserModule,
-    ArticleModule,
     AuthModule,
     HomeModule,
     ProfileModule,

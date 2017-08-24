@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleListConfig, TagsService, PowerPlantService, UserService } from '../shared';
+import { TagsService, PowerPlantService, UserService } from '../shared';
+import {PowerPlantListConfig} from '../shared/models/powerplant-list.model';
 
 @Component({
   selector: 'app-home-page',
@@ -11,7 +12,7 @@ import { ArticleListConfig, TagsService, PowerPlantService, UserService } from '
 export class HomeComponent implements OnInit {
 
   isAuthenticated: boolean;
-  listConfig: ArticleListConfig = new ArticleListConfig();
+  listConfig: PowerPlantListConfig = new PowerPlantListConfig();
   tags: Array<string> = [];
   tagsLoaded = false;
 
