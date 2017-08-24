@@ -18,6 +18,7 @@ export class UserService {
 
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  private payload: User = new User();
 
   constructor (
     private apiService: ApiService,
@@ -25,9 +26,30 @@ export class UserService {
     private jwtService: JwtService
   ) {}
 
+  // This is a standard user that we will be using!
+  private getUser() {
+    this.payload.email = 'joesan@joesan.com';
+    this.payload.username = 'joesan';
+    this.payload.bio = 'joesan bio';
+    this.payload.image = 'no image';
+    return this.payload;
+  }
+
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
+    const dummyUser = this.getUser();
+    const jwt = require('jwt-simple');
+    const payload = { user: 'joesan' };
+    const secret = 'testtest';
+    const token = jwt.encode(payload, secret);
+    dummyUser.token = token;
+    if (this.jwtService.getToken()) {
+      this.setAuth(dummyUser);
+    } else {
+      this.purgeAuth();
+    }
+    /*
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
       this.apiService.get('/user')
@@ -38,7 +60,7 @@ export class UserService {
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
-    }
+    } */
   }
 
   setAuth(user: User) {
