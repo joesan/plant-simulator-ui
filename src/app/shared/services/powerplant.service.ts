@@ -14,22 +14,6 @@ export class PowerPlantService {
     private apiService: ApiService
   ) {}
 
-  query(config: ArticleListConfig): Observable<{powerPlants: PowerPlant[], articlesCount: number}> {
-    // Convert any filters over to Angular's URLSearchParams
-    const params: URLSearchParams = new URLSearchParams();
-
-    Object.keys(config.filters)
-      .forEach((key) => {
-        params.set(key, config.filters[key]);
-      });
-
-    return this.apiService
-      .get(
-        '/articles' + ((config.type === 'feed') ? '/feed' : ''),
-        params
-      ).map(data => data);
-  }
-
   allPowerPlants(config: PowerPlantListConfig): Observable<PowerPlant[]> {
     // Convert any filters over to Angular's URLSearchParams
     const params: URLSearchParams = new URLSearchParams();
@@ -41,8 +25,7 @@ export class PowerPlantService {
 
     return this.apiService
       .get(
-        '/powerPlants' + ((config.type === 'feed') ? '/feed' : ''),
-        params
+        '/powerPlants', params
       ).map(data => data);
   }
 
