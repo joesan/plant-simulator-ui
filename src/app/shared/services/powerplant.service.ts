@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { ApiService } from './api.service';
-import { Article, PowerPlant, ArticleListConfig } from '../models';
+import { PowerPlant } from '../models';
 import {PowerPlantListConfig} from '../models/powerplant-list.model';
 
 @Injectable()
@@ -38,7 +38,7 @@ export class PowerPlantService {
     return this.apiService.delete('/articles/' + slug);
   }
 
-  save(article): Observable<Article> {
+  save(article): Observable<PowerPlant> {
     // If we're updating an existing article
     if (article.slug) {
       return this.apiService.put('/articles/' + article.slug, {article: article})
@@ -51,11 +51,11 @@ export class PowerPlantService {
     }
   }
 
-  favorite(slug): Observable<Article> {
+  favorite(slug): Observable<PowerPlant> {
     return this.apiService.post('/articles/' + slug + '/favorite');
   }
 
-  unfavorite(slug): Observable<Article> {
+  unfavorite(slug): Observable<PowerPlant> {
     return this.apiService.delete('/articles/' + slug + '/favorite');
   }
 

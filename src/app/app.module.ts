@@ -10,7 +10,6 @@ import { SettingsModule } from './settings/settings.module';
 import { PowerplantComponent } from './powerplant/powerplant.component';
 import {
   ApiService,
-  ArticlesService,
   AuthGuard,
   CommentsService,
   FooterComponent,
@@ -42,7 +41,6 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
   ],
   providers: [
     ApiService,
-    ArticlesService,
     AuthGuard,
     CommentsService,
     JwtService,
