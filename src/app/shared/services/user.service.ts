@@ -44,9 +44,12 @@ export class UserService {
     const secret = 'testtest';
     const token = jwt.encode(payload, secret);
     dummyUser.token = token;
+    console.log('token obtained is');
+    console.log(dummyUser.token);
     if (this.jwtService.getToken()) {
       this.setAuth(dummyUser);
     } else {
+      // Remove any potential remnants of previous auth states
       this.purgeAuth();
     }
     /*
