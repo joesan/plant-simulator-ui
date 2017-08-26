@@ -5,7 +5,7 @@
 
         <list-errors [errors]="errors"></list-errors>
 
-        <form [formGroup]="articleForm">
+        <form [formGroup]="powerPlantForm">
           <fieldset [disabled]="isSubmitting">
 
             <fieldset class="form-group">
@@ -45,24 +45,8 @@
               <textarea class="form-control"
                         formControlName="body"
                         rows="8"
-                        placeholder="Write your article (in markdown)">
+                        placeholder="Remarks & Comments">
               </textarea>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input class="form-control"
-                     type="text"
-                     placeholder="Enter tags"
-                     [formControl]="tagField"
-                     (keyup.enter)="addTag()" />
-
-              <div class="tag-list">
-                <span *ngFor="let tag of article.tagList"
-                      class="tag-default tag-pill">
-                  <i class="ion-close-round" (click)="removeTag(tag)"></i>
-                  {{ tag }}
-                </span>
-              </div>
             </fieldset>
 
             <button class="btn btn-lg btn-primary" type="button" (click)="submitForm()">
