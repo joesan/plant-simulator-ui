@@ -10,11 +10,37 @@ import {PowerPlantListConfig} from '../models/powerplant-list.model';
 
 @Injectable()
 export class PowerPlantService {
+  powerPlants: PowerPlant[];
   constructor (
     private apiService: ApiService
   ) {}
 
-  allPowerPlants(config: PowerPlantListConfig): Observable<PowerPlant[]> {
+  allPowerPlants(onlyActive: boolean = false, page: number = 1): void {
+    const self = this;
+    const path = `$/powerPlants?onlyActive${onlyActive}&page${page}`;
+    this.apiService.get(path).subscribe(
+      powerplants => {
+        powerplants.forEach(item => {
+          if (this.isPowerPlant(item)) {
+            // make the item an instance of PowerPlant
+            self.powerPlants.push(item as PowerPlant);
+          }
+        });
+      },
+      err => {
+        // handle error
+      });
+  }
+
+// define the type guard
+  isPowerPlant(item: any): item is PowerPlant {
+    // check for the required properties of PowerPlant here and return true/false.
+    // example:
+    return item['powerplantProp1'] && item['powerplantProp2'];
+  }
+
+  // TODO: This can be thrown out!
+  allPowerPlants1(config: PowerPlantListConfig): Observable<PowerPlant[]> {
     // Convert any filters over to Angular's URLSearchParams
     const params: URLSearchParams = new URLSearchParams();
 
