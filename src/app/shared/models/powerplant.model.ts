@@ -1,10 +1,11 @@
 import {PowerPlantType} from './powerplanttype.model';
 
-export class PowerPlant {
+export interface PowerPlant {
   powerPlantId: number;
-  orgName: string;
-  minPower: string;
-  maxPower: boolean;
-  // TODO: add rampRateSeconds and rampPowerRate
-  powerPlantType: PowerPlantType;
+  powerPlantName: string;
+  minPower: number;
+  maxPower: number;
+  powerPlantType: string;
+  rampRateInSeconds?: number;
+  rampPowerRate?: number;
 }
