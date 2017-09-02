@@ -1,8 +1,9 @@
 export class User {
+  id: number;
   email: string;
-  token: string;
+  firstName: string;
+  lastName: string;
+  password: string;
   username: string;
-  bio: string;
-  image: string;
   constructor() {}
 }

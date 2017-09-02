@@ -3,58 +3,40 @@
     <a class="navbar-brand" routerLink="/">plant-simulator</a>
 
     <!-- Show this for logged out users -->
-    <ul *showAuthed="false"
-      class="nav navbar-nav pull-xs-right">
-
+    <ul *ngIf='isLoggedIn() == false'
+        class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
         <a class="nav-link"
-          routerLink="/login"
+          routerLink="/register"
           routerLinkActive="active">
-          Sign in
+          Sign Up
         </a>
       </li>
-
     </ul>
 
     <!-- Show this for logged in users -->
-    <ul *showAuthed="true"
-      class="nav navbar-nav pull-xs-right">
-
-      <!-- TODO: Throw this out! -->
-      <!-- li class="nav-item">
-        <a class="nav-link"
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-          Home
-        </a>
-      </li -->
-
-      <!-- li class="nav-item">
-        <a class="nav-link"
-          routerLink="/powerplant"
+    <ul *ngIf='isLoggedIn() == true'
+        class="nav navbar-nav pull-xs-right">
+      <li class="nav-item nav-link">
+        <!-- TODO: Link the logged in use to his full profile -->
+        <!-- a class="nav-link"
+          [routerLink]="['/profile', currentUser.id]"
           routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;New Article
-        </a>
-      </li -->
-
+          {{ currentUser.firstname }}
+        </a -->
+        <a href='javascript:void(0);'>{{ currentUser.username }}</a>
+      </li>
       <li class="nav-item">
+        <!--a class="nav-link"
+           [routerLink]="['/login']">
+           Logout
+        </a -->
         <a class="nav-link"
-          routerLink="/settings"
-          routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Settings
+           routerLink="/login"
+           routerLinkActive="active">
+          Logout
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link"
-          [routerLink]="['/profile', currentUser.username]"
-          routerLinkActive="active">
-          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
-          {{ currentUser.username }}
-        </a>
-      </li>
-
     </ul>
 
   </div>

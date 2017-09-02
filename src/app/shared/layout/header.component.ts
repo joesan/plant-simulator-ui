@@ -1,24 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { User } from '../models';
-import { UserService } from '../services';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-layout-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent {
   currentUser: User;
-
   constructor(
-    private userService: UserService
-  ) {}
-  ngOnInit() {
-    this.userService.currentUser.subscribe(
-      (userData) => {
-        this.currentUser = userData;
-      }
-    )
+    private authService: AuthenticationService
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  isLoggedIn() {
+    return this.authService.loggedIn();
   }
 }

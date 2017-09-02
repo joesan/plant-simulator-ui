@@ -1,5 +1,3 @@
-import {PowerPlantType} from './powerplanttype.model';
-
 export interface PowerPlant {
   powerPlantId: number;
   powerPlantName: string;
