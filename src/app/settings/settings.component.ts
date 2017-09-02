@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { User, UserService } from '../shared';
 
 @Component({
-  selector: 'settings-page',
+  selector: 'app-settings-page',
   templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
@@ -30,7 +30,8 @@ export class SettingsComponent implements OnInit {
     // Optional: subscribe to changes on the form
     // this.settingsForm.valueChanges.subscribe(values => this.updateUser(values));
   }
-
+  ngOnInit() {}
+/*
   ngOnInit() {
     // Make a fresh copy of the current user's object to place in editable form fields
     (<any>Object).assign(this.user, this.userService.getCurrentUser());
@@ -63,5 +64,5 @@ export class SettingsComponent implements OnInit {
   updateUser(values: Object) {
     (<any>Object).assign(this.user, values);
   }
-
+*/
 }

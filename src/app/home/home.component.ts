@@ -1,55 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { TagsService, PowerPlantService, UserService } from '../shared';
-import {PowerPlantListConfig} from '../shared/models/powerplant-list.model';
+import { PowerPlantService, UserService } from '../shared';
+import { User } from '../shared/models/user.model';
+import { PowerPlant } from '../shared/models/powerplant.model';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  // currentUser: User;
+  // represents the list of PowerPlant data
+  powerPlants: PowerPlant[];
+  users: User[] = [];
 
-  isAuthenticated: boolean;
-  listConfig: PowerPlantListConfig = new PowerPlantListConfig();
-  tags: Array<string> = [];
-  tagsLoaded = false;
-
-  constructor(
-    private router: Router,
-    private tagsService: TagsService,
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService, private powerPlantService: PowerPlantService) {
+    // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   ngOnInit() {
-    this.userService.isAuthenticated.subscribe(
-      (authenticated) => {
-        this.isAuthenticated = authenticated;
+    this.allPowerPlants();
+  }
 
-        // set the article list accordingly
-        if (authenticated) {
-          this.setListTo('feed');
-        } else {
-          this.setListTo('all');
-        }
-      }
-    );
-
-    this.tagsService.getAll()
-    .subscribe(tags => {
-      this.tags = tags;
-      this.tagsLoaded = true;
+  allPowerPlants(onlyActive: boolean = false, page: number = 1): void {
+    this.powerPlantService.allPowerPlants(onlyActive, page).subscribe(result => {
+      this.powerPlants = <PowerPlant[]> result;
     });
   }
 
-  setListTo(type: string = '', filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
-    if (type === 'feed' && !this.isAuthenticated) {
-      this.router.navigateByUrl('/login');
-      return;
+  /*
+    ngOnInit() {
+      this.loadAllUsers();
     }
 
-    // Otherwise, set the list object
-    this.listConfig = {type: type, filters: filters};
-  }
+    deleteUser(id: number) {
+      this.userService.delete(id).subscribe(() => { this.loadAllUsers(); });
+    }
+
+    private loadAllUsers() {
+      this.userService.getAll().subscribe(users => { this.users = users; });
+    } */
 }
