@@ -26,7 +26,6 @@ import { fakeBackendProvider } from './shared/services/fake-backend';
 import { PowerplantComponent } from './powerplant/powerplant.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PowerPlantService } from './shared/services/powerplant.service';
-import { VirtualScrollModule } from 'angular2-virtual-scroll';
 
 // const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: false });
 
@@ -44,7 +43,6 @@ import { VirtualScrollModule } from 'angular2-virtual-scroll';
   imports: [
     SharedModule,
     BrowserModule,
-    VirtualScrollModule,
     routing
   ],
   providers: [

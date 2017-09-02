@@ -1,0 +1,4 @@
+﻿<div class="auth-page container col-md-6 offset-md-3 col-xs-12" *ngIf="message"
+  [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+  {{message.text}}
+</div>
