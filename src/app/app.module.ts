@@ -1,52 +1,65 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
-import { HomeModule } from './home/home.module';
-import { ProfileModule } from './profile/profile.module';
-import { SettingsModule } from './settings/settings.module';
-import { PowerplantComponent } from './powerplant/powerplant.component';
 import {
   ApiService,
   AuthGuard,
-  CommentsService,
   FooterComponent,
   HeaderComponent,
   JwtService,
   ProfilesService,
   SharedModule,
-  TagsService,
   UserService
 } from './shared';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
+import { routing } from './app.routing';
+import { HomeComponent } from './home/home.component';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { AlertService } from './shared/services/alert.service';
+import { BaseRequestOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+import { fakeBackendProvider } from './shared/services/fake-backend';
+import { PowerplantComponent } from './powerplant/powerplant.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PowerPlantService } from './shared/services/powerplant.service';
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
+
+// const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: false });
 
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent,
+    HomeComponent,
     FooterComponent,
     HeaderComponent,
+    LoginComponent,
+    RegisterComponent,
     PowerplantComponent
   ],
   imports: [
-    BrowserModule,
-    AuthModule,
-    HomeModule,
-    ProfileModule,
-    rootRouting,
     SharedModule,
-    SettingsModule
+    BrowserModule,
+    VirtualScrollModule,
+    routing
   ],
   providers: [
     ApiService,
     AuthGuard,
-    CommentsService,
     JwtService,
+    AuthenticationService,
+    AlertService,
     ProfilesService,
-    TagsService,
-    UserService
+    UserService,
+    PowerPlantService,
+    // providers used to create fake backend
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
   ],
   bootstrap: [AppComponent]
 })

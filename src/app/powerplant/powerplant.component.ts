@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {PowerPlant} from '../shared/models/powerplant.model';
+import {PowerPlantService} from '../shared/services/powerplant.service';
 
 @Component({
   selector: 'app-powerplant',
@@ -6,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PowerplantComponent implements OnInit {
 
-  constructor() { }
+  powerPlantService: PowerPlantService;
+  powerPlants: PowerPlant[];
+  @Input() powerPlant: PowerPlant;
 
-  ngOnInit() {
+  constructor(powerPlantService: PowerPlantService) {
+    this.powerPlantService = powerPlantService;
   }
 
+  ngOnInit() {
+    console.log('calling power plants');
+    this.powerPlantService.allPowerPlants().subscribe(result => {
+      this.powerPlants = <PowerPlant[]> result;
+    });
+  }
 }

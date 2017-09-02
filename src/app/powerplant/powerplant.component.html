@@ -1,62 +1,11 @@
-<div class="editor-page">
-  <div class="container page">
-    <div class="row">
-      <div class="col-md-10 offset-md-1 col-xs-12">
-
-        <list-errors [errors]="errors"></list-errors>
-
-        <form [formGroup]="powerPlantForm">
-          <fieldset [disabled]="isSubmitting">
-
-            <fieldset class="form-group">
-              Organization Name
-              <input class="form-control"
-                     formControlName="orgName"
-                     type="text"
-                     placeholder="Enter a valid organization name*" />
-            </fieldset>
-
-            <fieldset class="form-group">
-              Description
-              <input class="form-control"
-                     formControlName="orgDescription"
-                     type="text"
-                     placeholder="What's this PowerPlant about?" />
-            </fieldset>
-
-            <fieldset class="form-group"><div class="form-min-max-power-input">
-              Minimum Power in kw
-              <input class="form-control"
-                     formControlName="minPower"
-                     maxlength="4"
-                     type="text"
-                     required
-                     placeholder="Minimum power capacity in kw" /></div><div class="form-min-max-power-input">
-              Maximum Power in kw
-              <input class="form-control"
-                     formControlName="maxPower"
-                     maxlength="4"
-                     type="text"
-                     required
-                     placeholder="Maximum power capacity in kw" /></div>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <textarea class="form-control"
-                        formControlName="body"
-                        rows="8"
-                        placeholder="Remarks & Comments">
-              </textarea>
-            </fieldset>
-
-            <button class="btn btn-lg btn-primary" type="button" (click)="submitForm()">
-              Add New PowerPlant
-            </button>
-
-          </fieldset>
-        </form>
-
-      </div>
-    </div>
+<div class="twelve wide column">
+  <div class="value">
+    MaxPower: {{ powerPlant.maxPower }} MinPower: {{ powerPlant.minPower }}
+  </div>
+  <div class="value">
+    PowerPlantType: {{ powerPlant.powerPlantType }} Organization: {{ powerPlant.powerPlantName }}
+  </div>
+  <div *ngIf="powerPlant.rampRateInSeconds && powerPlant.rampPowerRate" class="value">
+    RampPowerRate: {{ powerPlant.rampPowerRate }} RampRateInSeconds: {{ powerPlant.rampRateInSeconds }}
   </div>
 </div>
