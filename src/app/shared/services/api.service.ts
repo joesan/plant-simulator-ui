@@ -29,22 +29,13 @@ export class ApiService {
   }
 
   private formatErrors(error: any) {
-     return Observable.throw(error.json());
-  }
-
-  fetchAllPowerPlants(active: boolean): void {
-    this.loading = true;
-    this.http.request('http://localhost:9000/powerPlants?active=${active}')
-      .subscribe((res: Response) => {
-        this.data = res.json(); // TODO: Map this response type to PowerPlant typescript type
-        this.loading = false;
-      });
+    return Observable.throw(error.json());
   }
 
   get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
-    return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(), search: params })
-    .catch(this.formatErrors)
-    .map((res: Response) => res.json());
+    return this.http.get(`${environment.api_url}${path}`, { search: params })
+      .catch(this.formatErrors)
+      .map((res: Response) => res.json());
   }
 
   put(path: string, body: Object = {}): Observable<any> {
@@ -53,8 +44,8 @@ export class ApiService {
       JSON.stringify(body),
       { headers: this.setHeaders() }
     )
-    .catch(this.formatErrors)
-    .map((res: Response) => res.json());
+      .catch(this.formatErrors)
+      .map((res: Response) => res.json());
   }
 
   post(path: string, body: Object = {}): Observable<any> {
@@ -63,8 +54,8 @@ export class ApiService {
       JSON.stringify(body),
       { headers: this.setHeaders() }
     )
-    .catch(this.formatErrors)
-    .map((res: Response) => res.json());
+      .catch(this.formatErrors)
+      .map((res: Response) => res.json());
   }
 
   delete(path): Observable<any> {
@@ -72,7 +63,7 @@ export class ApiService {
       `${environment.api_url}${path}`,
       { headers: this.setHeaders() }
     )
-    .catch(this.formatErrors)
-    .map((res: Response) => res.json());
+      .catch(this.formatErrors)
+      .map((res: Response) => res.json());
   }
 }
