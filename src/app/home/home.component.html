@@ -7,21 +7,19 @@
         <form class="row" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="powerPlantName">PowerPlant Name</label>
-            <input type="text" class="form-control-small" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" required />
-            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+            <input type="text" class="form-control-small" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" />
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="powerPlantType">PowerPlant Type</label>
-            <input type="text" class="form-control-small" name="powerPlantType" [(ngModel)]="model.lastName" #lastName="ngModel" required />
-            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+            <input type="text" class="form-control-small" name="powerPlantType" [(ngModel)]="model.lastName" #lastName="ngModel" />
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="organizationName">Organization Name</label>
-            <input type="text" class="form-control-small" name="organizationName" [(ngModel)]="model.username" #username="ngModel" required />
+            <input type="text" class="form-control-small" name="organizationName" [(ngModel)]="model.username" #username="ngModel" />
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="powerPlantStatus">PowerPlant Active Status</label>
-            <input type="password" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.password" #password="ngModel" required />
+            <input type="password" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.password" #password="ngModel" />
           </div>
           <div class="form-group col-md-3">
             <button [disabled]="loading" class="btn btn-primary">Search</button>
