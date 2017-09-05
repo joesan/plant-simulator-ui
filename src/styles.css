@@ -5093,7 +5093,7 @@ footer .attribution {
 
 .form-control-small {
   display: block;
-  width: 35%;
+  width: 25%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   line-height: 1.25;
@@ -5104,10 +5104,9 @@ footer .attribution {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem; }
 
-.form-group .form-control-small{
-  display: inline-block;
+.form-group label{
+  display: block;
 }
-
-.form-group input[type=text]{
-  display: inline-block;
+.form-group .form-control-small {
+  width: 100%;
 }
