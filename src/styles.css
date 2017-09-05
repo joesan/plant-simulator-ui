@@ -5090,3 +5090,24 @@ footer .attribution {
 .form-min-max-power-input {
    width:43%;
    float:left; }
+
+.form-control-small {
+  display: block;
+  width: 35%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem; }
+
+.form-group .form-control-small{
+  display: inline-block;
+}
+
+.form-group input[type=text]{
+  display: inline-block;
+}
