@@ -3,12 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { PowerPlantService, UserService } from '../shared';
 import { User } from '../shared/models/user.model';
 import { PowerPlant } from '../shared/models/powerplant.model';
+import {PowerPlantSearchParams} from '../shared/models/powerplantsearchparams.model';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  // Represents the search form
+  model: any = {};
   // currentUser: User;
   // represents the list of PowerPlant data
   powerPlants: PowerPlant[];
@@ -20,6 +23,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.allPowerPlants();
+  }
+
+  searchPowerPlants(): void {
+    const powerPlantSearchParams = new PowerPlantSearchParams(
+      this.model.powerPlantType,
+      this.model.powerPlantOrganization,
+      this.model.powerPlantName,
+      this.model.powerPlantStatus);
+
+    this.powerPlantService.searchPowerPlants(powerPlantSearchParams).subscribe(result => {
+      this.powerPlants = <PowerPlant[]> result;
+    });
   }
 
   allPowerPlants(onlyActive: boolean = false, page: number = 1): void {

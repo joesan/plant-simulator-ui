@@ -5,7 +5,7 @@
       <div class="col-md-11 col-xs-10">
         <h2>Search</h2>
         <hr>
-        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.form.valid && searchPowerPlants()" #f="ngForm" novalidate>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="powerPlantName">PowerPlant Name</label>
             <input type="text" class="form-control-small" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" />
@@ -17,11 +17,11 @@
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="organizationName">Organization Name</label>
-            <input type="text" class="form-control-small" name="organizationName" [(ngModel)]="model.username" #username="ngModel" />
+            <input type="text" class="form-control-small" name="powerPlantOrganization" [(ngModel)]="model.powerPlantOrganization" #username="ngModel" />
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="powerPlantStatus">PowerPlant Active Status</label>
-            <input type="password" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.password" #password="ngModel" />
+            <input type="text" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.powerPlantStatus" #password="ngModel" />
           </div>
           <div class="form-group col-md-3 col-xs-4">
             <button [disabled]="loading" class="btn btn-primary">Search For PowerPant's...</button>
