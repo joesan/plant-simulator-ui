@@ -10,6 +10,8 @@ import {PowerPlantSearchParams} from '../shared/models/powerplantsearchparams.mo
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+  // Represents the PowerPlantTypes
+  powerPlantTypes = ['RampUpType', 'OnOffType'];
   // Represents the search form
   model: any = {};
   // currentUser: User;
