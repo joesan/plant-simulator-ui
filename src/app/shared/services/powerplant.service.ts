@@ -24,9 +24,18 @@ export class PowerPlantService {
 
   searchPowerPlants(searchParams: PowerPlantSearchParams): Observable<any> {
     const params: string[] = [];
-    if (!searchParams.isOnlyActivePowerPlants == null) {
+    // onlyActive flag and pageNumber is mandatory
+    if (searchParams.isOnlyActivePowerPlants == null) {
+      params.push(`onlyActive=true`);
+    } else {
       params.push(`onlyActive=${searchParams.isOnlyActivePowerPlants}`);
     }
+    if (searchParams.page == null) {
+      params.push(`page=1`);
+    } else {
+      params.push(`page=${searchParams.page}`);
+    }
+    // All the other fields are optional
     if (!searchParams.powerPlantType == null) {
       params.push(`powerPlantType=${searchParams.powerPlantType}`);
     }
@@ -36,7 +45,9 @@ export class PowerPlantService {
     if (!searchParams.powerPlantName == null) {
       params.push(`name=${searchParams.powerPlantName}`);
     }
-    params.join('&');
+    console.log('query generated is ************ ');
+    console.log(`${this.allPowerPlantsURL}?${params.join('&')}`);
+    console.log('query generated is ************ ');
     return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
   }
 }

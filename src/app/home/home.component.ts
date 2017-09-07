@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
       this.model.powerPlantType,
       this.model.powerPlantOrganization,
       this.model.powerPlantName,
+      this.model.page,
       this.model.powerPlantStatus);
 
     this.powerPlantService.searchPowerPlants(powerPlantSearchParams).subscribe(result => {

@@ -12,16 +12,16 @@
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="powerPlantType">PowerPlant Type</label>
-            <input type="text" class="form-control-small" name="powerPlantType" [(ngModel)]="model.powerPlantType" #lastName="ngModel" required />
+            <input type="text" class="form-control-small" name="powerPlantType" [(ngModel)]="model.powerPlantType" #powerPlantType="ngModel" required />
             <div *ngIf="f.submitted && !powerPlantType.valid" class="help-block">Required Field!</div>
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
             <label for="organizationName">Organization Name</label>
-            <input type="text" class="form-control-small" name="powerPlantOrganization" [(ngModel)]="model.powerPlantOrganization" #username="ngModel" />
+            <input type="text" class="form-control-small" name="powerPlantOrganization" [(ngModel)]="model.powerPlantOrganization" #organizationName="ngModel" />
           </div>
           <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="powerPlantStatus">PowerPlant Active Status</label>
-            <input type="text" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.powerPlantStatus" #password="ngModel" />
+            <input type="text" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.powerPlantStatus" #powerPlantStatus="ngModel" />
           </div>
           <div class="form-group col-md-3 col-xs-4">
             <button [disabled]="loading" class="btn btn-primary">Search For PowerPant's...</button>
