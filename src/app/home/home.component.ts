@@ -12,6 +12,8 @@ import {PowerPlantSearchParams} from '../shared/models/powerplantsearchparams.mo
 export class HomeComponent implements OnInit {
   // Represents the PowerPlantTypes
   powerPlantTypes = ['RampUpType', 'OnOffType'];
+  // Represents the status of a PowerPlant
+  powerPlantStatuses = ['Active & Disabled', 'Only Active', 'Only Disabled'];
   // Represents the search form
   model: any = {};
   // currentUser: User;
@@ -25,6 +27,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.allPowerPlants();
+  }
+
+  selectName() {
+    alert(this.model.powerPlantType);
   }
 
   searchPowerPlants(): void {
@@ -45,17 +51,4 @@ export class HomeComponent implements OnInit {
       this.powerPlants = <PowerPlant[]> result;
     });
   }
-
-  /*
-    ngOnInit() {
-      this.loadAllUsers();
-    }
-
-    deleteUser(id: number) {
-      this.userService.delete(id).subscribe(() => { this.loadAllUsers(); });
-    }
-
-    private loadAllUsers() {
-      this.userService.getAll().subscribe(users => { this.users = users; });
-    } */
 }

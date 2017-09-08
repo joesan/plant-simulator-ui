@@ -5,31 +5,39 @@
       <div class="col-md-11 col-xs-10">
         <h2>Search</h2>
         <hr>
-        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.form.valid && searchPowerPlants()" #f="ngForm" novalidate>
-          <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.valid && searchPowerPlants()" #f="ngForm" novalidate>
+          <div class="form-group col-xs-3" >
             <label for="powerPlantName">PowerPlant Name</label>
-            <input type="text" class="form-control-small" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" />
+            <input type="text" class="form-control-small" [ngClass]="{ 'has-error': f.submitted && !powerPlantName.valid }" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" />
           </div>
-          <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <div class="form-group col-xs-3" >
             <label for="powerPlantType">PowerPlant Type</label>
-
-            <input type="text" class="form-control-small" name="powerPlantType" [(ngModel)]="model.powerPlantType" #powerPlantType="ngModel" required />
-            <div *ngIf="f.submitted && !powerPlantType.valid" class="help-block">Required Field!</div>
+            <select class="hideLabel form-control" [(ngModel)]="model.powerPlantType" name="powerPlantType" (change)="selectName();">
+              <option value="" disabled value="0">--Select Type--</option>
+              <option [ngValue]="powerPlantType" *ngFor="let powerPlantType of powerPlantTypes">
+                {{ powerPlantType }}
+              </option>
+            </select>
           </div>
-          <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+          <div class="form-group col-xs-3" >
             <label for="organizationName">Organization Name</label>
-            <input type="text" class="form-control-small" name="powerPlantOrganization" [(ngModel)]="model.powerPlantOrganization" #organizationName="ngModel" />
+            <input type="text" class="form-control-small" name="powerPlantOrganization" [(ngModel)]="model.powerPlantOrg" #organizationName="ngModel" />
           </div>
-          <div class="form-group col-xs-3" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+          <div class="form-group col-xs-3" >
             <label for="powerPlantStatus">PowerPlant Active Status</label>
-            <input type="text" class="form-control-small" name="powerPlantStatus" [(ngModel)]="model.powerPlantStatus" #powerPlantStatus="ngModel" />
+            <select class="hideLabel form-control" [(ngModel)]="model.powerPlantStatus" name="powerPlantStatus" (change)="selectName();">
+              <option value="" disabled value="0" >--Select Status--</option>
+              <option [ngValue]="powerPlantStatus" *ngFor="let powerPlantStatus of powerPlantStatuses">
+                {{ powerPlantStatus }}
+              </option>
+            </select>
           </div>
           <div class="form-group col-md-3 col-xs-4">
             <button [disabled]="loading" class="btn btn-primary">Search For PowerPant's...</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
           </div>
           <div class="form-group col-md-3 col-xs-3">
-            <button class="btn btn-primary">Reset Search Criteria</button>
+            <button class="btn btn-primary" (click)="f.reset()">Reset Search Criteria</button>
           </div>
         </form>
         <hr>
@@ -47,11 +55,7 @@
             </tbody>
           </table>
         </div>
-
       </div>
-
-
-
     </div>
   </div>
 </div>

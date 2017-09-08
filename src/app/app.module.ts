@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Ng4DropdownModule } from 'ng4-material-dropdown';
 
 import { AppComponent } from './app.component';
 import {
@@ -44,7 +43,6 @@ import { PowerPlantService } from './shared/services/powerplant.service';
   imports: [
     SharedModule,
     BrowserModule,
-    Ng4DropdownModule,
     routing
   ],
   providers: [
