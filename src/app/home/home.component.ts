@@ -24,15 +24,13 @@ export class HomeComponent implements OnInit {
   constructor(private powerPlantService: PowerPlantService) {
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // Set the initial values for the drop down fields in the UI
-    this.model.powerPlantType = '';
-    this.model.powerPlantStatus = '';
+    this.resetForm();
   }
 
   ngOnInit() {
   }
 
   resetForm() {
-    alert('in resetForm');
     this.model.powerPlantType = '';
     this.model.powerPlantStatus = '';
   }
