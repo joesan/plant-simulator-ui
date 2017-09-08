@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   // Represents the PowerPlantTypes
   powerPlantTypes = ['RampUpType', 'OnOffType'];
   // Represents the status of a PowerPlant
-  powerPlantStatuses = ['Active & Disabled', 'Only Active', 'Only Disabled'];
+  powerPlantStatuses = ['Active & Disabled', 'Active', 'Disabled'];
   // Represents the search form
   model: any = {};
   // currentUser: User;
@@ -21,23 +21,27 @@ export class HomeComponent implements OnInit {
   powerPlants: PowerPlant[];
   users: User[] = [];
 
-  constructor(private userService: UserService, private powerPlantService: PowerPlantService) {
+  constructor(private powerPlantService: PowerPlantService) {
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // Set the initial values for the drop down fields in the UI
     this.model.powerPlantType = '';
+    this.model.powerPlantStatus = '';
   }
 
   ngOnInit() {
-    this.allPowerPlants();
   }
 
-  selectName() {
-    alert(this.model.powerPlantType);
+  resetForm() {
+    alert('in resetForm');
+    this.model.powerPlantType = '';
+    this.model.powerPlantStatus = '';
   }
 
   searchPowerPlants(): void {
+    alert('search');
     const powerPlantSearchParams = new PowerPlantSearchParams(
       this.model.powerPlantType,
-      this.model.powerPlantOrganization,
+      this.model.powerPlantOrg,
       this.model.powerPlantName,
       this.model.page,
       this.model.powerPlantStatus);

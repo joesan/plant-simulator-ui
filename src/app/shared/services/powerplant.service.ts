@@ -24,30 +24,28 @@ export class PowerPlantService {
 
   searchPowerPlants(searchParams: PowerPlantSearchParams): Observable<any> {
     const params: string[] = [];
-    // onlyActive flag and pageNumber is mandatory TODO: Work on this
-    /* if (searchParams.isOnlyActivePowerPlants == null) {
-      params.push(`onlyActive=true`);
-    } else {
-      params.push(`onlyActive=${searchParams.isOnlyActivePowerPlants}`);
-    } */
-    if (searchParams.page == null) {
-      params.push(`page=1`);
-    } else {
+    // pageNumber is mandatory
+    if (searchParams.page) {
       params.push(`page=${searchParams.page}`);
+    } else {
+      params.push(`page=1`);
     }
     // All the other fields are optional
-    if (!searchParams.powerPlantType == null) {
+    if (searchParams.powerPlantStatus === 'Active') {
+      params.push(`onlyActive=true`);
+    } else if (searchParams.powerPlantStatus === 'Disabled') {
+      params.push(`onlyActive=false`);
+    }
+    if (searchParams.powerPlantType) {
       params.push(`powerPlantType=${searchParams.powerPlantType}`);
     }
-    if (!searchParams.powerPlantOrg == null) {
+    if (searchParams.powerPlantOrg) {
       params.push(`org=${searchParams.powerPlantOrg}`);
     }
-    if (!searchParams.powerPlantName == null) {
+    if (searchParams.powerPlantName) {
       params.push(`name=${searchParams.powerPlantName}`);
     }
-    console.log('query generated is ************ ');
-    console.log(`${this.allPowerPlantsURL}?${params.join('&')}`);
-    console.log('query generated is ************ ');
+    alert(`${this.allPowerPlantsURL}?${params.join('&')}`);
     return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
   }
 }
