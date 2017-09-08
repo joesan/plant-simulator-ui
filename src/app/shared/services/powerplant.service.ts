@@ -24,12 +24,12 @@ export class PowerPlantService {
 
   searchPowerPlants(searchParams: PowerPlantSearchParams): Observable<any> {
     const params: string[] = [];
-    // onlyActive flag and pageNumber is mandatory
-    if (searchParams.isOnlyActivePowerPlants == null) {
+    // onlyActive flag and pageNumber is mandatory TODO: Work on this
+    /* if (searchParams.isOnlyActivePowerPlants == null) {
       params.push(`onlyActive=true`);
     } else {
       params.push(`onlyActive=${searchParams.isOnlyActivePowerPlants}`);
-    }
+    } */
     if (searchParams.page == null) {
       params.push(`page=1`);
     } else {
