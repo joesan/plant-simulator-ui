@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   // Represents the search form
   model: any = {};
   // represents the list of PowerPlant data
-  powerPlants: PowerPlant[];
+  powerPlants: PowerPlant[] = [];
   scrollCallback;
 
   currentPage = 1;
@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
     // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // Set the initial values for the drop down fields in the UI
     this.resetForm();
+
+    this.scrollCallback = this.searchPowerPlants.bind(this);
   }
 
   ngOnInit() {}
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   private generateData() {
-    const powerPlantArray: PowerPlant[] = null;
+    const powerPlantArray: PowerPlant[] = [];
     for (let i = 0; i < 5; i++) {
       if (i % 2 === 0) {
         const p: PowerPlant = {
@@ -75,21 +77,16 @@ export class HomeComponent implements OnInit {
     this.powerPlantService.searchPowerPlants(powerPlantSearchParams).subscribe(result => {
       this.powerPlants = <PowerPlant[]> result;
     }); */
-    this.scrollCallback = this.searchPowerPlants.bind(this);
-    alert('calling');
-    const something = this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage);
-    return this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage).map(elem => {
-      alert('mapping data');
-      this.generateData();
-      })
-      .do(this.processData);
+    // this.scrollCallback = this.searchPowerPlants.bind(this);
+    // const something = this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage);
+    return this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage).do(this.processData);
   }
 
   private processData = (newPowerPlants) => {
-    alert('In processData');
+    alert(newPowerPlants);
     this.currentPage++;
     // this.powerPlants = this.powerPlants.concat(newPowerPlants.json());
-    this.powerPlants = this.powerPlants.concat(this.generateData());
+    this.powerPlants = this.powerPlants.concat(newPowerPlants);
   }
 
   allPowerPlants(onlyActive: boolean = false, page: number = 1): void {

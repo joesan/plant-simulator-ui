@@ -22,6 +22,34 @@ export class PowerPlantService {
     return this.apiService.get(`${this.allPowerPlantsURL}?${params}`);
   }
 
+  private generateData() {
+    const powerPlantArray: PowerPlant[] = [];
+    for (let i = 0; i < 20; i++) {
+      if (i % 2 === 0) {
+        const p: PowerPlant = {
+          powerPlantId: i,
+          powerPlantName: `PowerPlant ${i}`,
+          minPower: 100,
+          maxPower: 200,
+          powerPlantType: 'OnOffType'
+        };
+        powerPlantArray.push(p);
+      } else {
+        const p: PowerPlant = {
+          powerPlantId: i,
+          powerPlantName: `PowerPlant ${i}`,
+          minPower: 100,
+          maxPower: 200,
+          powerPlantType: 'RampUpType',
+          rampPowerRate: 10,
+          rampRateInSeconds: 2
+        };
+        powerPlantArray.concat(p);
+      }
+    }
+    return powerPlantArray;
+  }
+
   searchPowerPlants(searchParams: PowerPlantSearchParams, page: number): Observable<any> {
     const params: string[] = [];
     // pageNumber is mandatory
@@ -45,6 +73,7 @@ export class PowerPlantService {
     if (searchParams.powerPlantName) {
       params.push(`name=${searchParams.powerPlantName}`);
     }
-    return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
+    // return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
+    return Observable.of(this.generateData());
   }
 }

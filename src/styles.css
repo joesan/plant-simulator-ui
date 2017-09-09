@@ -5093,7 +5093,7 @@ footer .attribution {
 
 .form-control-small {
   display: block;
-  width: 25%;
+  width: 55%;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   line-height: 1.25;
@@ -5104,9 +5104,29 @@ footer .attribution {
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem; }
 
-.form-group label {
+.form-group label{
   display: block;
 }
 .form-group .form-control-small {
   width: 100%;
+}
+
+#infinite-scroller {
+  height: 200px;
+  width: 700px;
+  border: 1px solid #f5ad7c;
+  overflow: scroll;
+  padding: 0;
+  list-style: none;
+
+li {
+  padding : 10px 5px;
+  line-height: 1.5;
+&:nth-child(odd) {
+   background : #ffe8d8;
+ }
+&:nth-child(even) {
+   background : #f5ad7c;
+ }
+}
 }
