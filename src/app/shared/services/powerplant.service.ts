@@ -22,11 +22,11 @@ export class PowerPlantService {
     return this.apiService.get(`${this.allPowerPlantsURL}?${params}`);
   }
 
-  searchPowerPlants(searchParams: PowerPlantSearchParams): Observable<any> {
+  searchPowerPlants(searchParams: PowerPlantSearchParams, page: number): Observable<any> {
     const params: string[] = [];
     // pageNumber is mandatory
-    if (searchParams.page) {
-      params.push(`page=${searchParams.page}`);
+    if (page) {
+      params.push(`page=${page}`);
     } else {
       params.push(`page=1`);
     }
@@ -45,7 +45,6 @@ export class PowerPlantService {
     if (searchParams.powerPlantName) {
       params.push(`name=${searchParams.powerPlantName}`);
     }
-    alert(`${this.allPowerPlantsURL}?${params.join('&')}`);
     return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
   }
 }

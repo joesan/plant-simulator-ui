@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { InfiniteScrollerDirective } from './shared/directives/infinite-scroller.directive';
 
 import { AppComponent } from './app.component';
 import {
@@ -36,6 +37,7 @@ import { PowerPlantService } from './shared/services/powerplant.service';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    InfiniteScrollerDirective,
     LoginComponent,
     RegisterComponent,
     PowerplantComponent
