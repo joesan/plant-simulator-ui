@@ -27,16 +27,16 @@ export class HomeComponent implements OnInit {
     this.resetForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   resetForm() {
+    this.model.powerPlantOrg = '';
+    this.model.powerPlantName = '';
     this.model.powerPlantType = '';
     this.model.powerPlantStatus = '';
   }
 
   searchPowerPlants(): void {
-    alert('search');
     const powerPlantSearchParams = new PowerPlantSearchParams(
       this.model.powerPlantType,
       this.model.powerPlantOrg,
