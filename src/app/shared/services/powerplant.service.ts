@@ -73,6 +73,7 @@ export class PowerPlantService {
     if (searchParams.powerPlantName) {
       params.push(`name=${searchParams.powerPlantName}`);
     }
+    alert('sending request to API');
     // return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
     return Observable.of(this.generateData());
   }
