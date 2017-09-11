@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 
 import { PowerPlantService, UserService } from '../shared';
 import { User } from '../shared/models/user.model';
@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   // represents the list of PowerPlant data
   powerPlants: PowerPlant[] = [];
   scrollCallback;
+  // Indicates if the searchButton was clicked or not!
+  isSearchButtonClicked = false;
 
   currentPage = 1;
 
@@ -32,66 +34,64 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
+  emptyAndBindNew() {
+    this.isSearchButtonClicked = true;
+    this.powerPlants = [];
+    this.currentPage = 1;
+    // this.scrollCallback = this.searchPowerPlants.bind(this);
+  }
+
   resetForm() {
     this.model.powerPlantOrg = '';
     this.model.powerPlantName = '';
     this.model.powerPlantType = '';
     this.model.powerPlantStatus = '';
   }
-
-  private generateData() {
-    const powerPlantArray: PowerPlant[] = [];
-    for (let i = 0; i < 5; i++) {
-      if (i % 2 === 0) {
-        const p: PowerPlant = {
-          powerPlantId: i,
-          powerPlantName: `PowerPlant ${i}`,
-          minPower: 100,
-          maxPower: 200,
-          powerPlantType: 'OnOffType'
-        };
-        powerPlantArray.push(p);
-      } else {
-        const p: PowerPlant = {
-          powerPlantId: i,
-          powerPlantName: `PowerPlant ${i}`,
-          minPower: 100,
-          maxPower: 200,
-          powerPlantType: 'RampUpType',
-          rampPowerRate: 10,
-          rampRateInSeconds: 2
-        };
-        powerPlantArray.push(p);
-      }
-    }
-    return powerPlantArray;
-  }
-
+/*
   searchPowerPlants() {
+    alert('page number is ' + this.currentPage);
     const powerPlantSearchParams = new PowerPlantSearchParams(
       this.model.powerPlantType,
       this.model.powerPlantOrg,
       this.model.powerPlantName,
       this.model.powerPlantStatus);
-/*
-    this.powerPlantService.searchPowerPlants(powerPlantSearchParams).subscribe(result => {
-      this.powerPlants = <PowerPlant[]> result;
-    }); */
     // this.scrollCallback = this.searchPowerPlants.bind(this);
     // const something = this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage);
     return this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage).do(this.processData);
+  } */
+
+  searchPowerPlants() {
+    if (this.isSearchButtonClicked === true) {
+      this.isSearchButtonClicked = false;
+      // Reset the old entries
+      this.powerPlants = [];
+      this.currentPage = 1;
+      this.searchPowerPlants();
+    } else {
+//      alert('page number is ' + this.currentPage);
+      const powerPlantSearchParams = new PowerPlantSearchParams(
+        this.model.powerPlantType,
+        this.model.powerPlantName,
+        this.model.powerPlantOrg,
+        this.model.powerPlantStatus);
+       // this.scrollCallback = this.searchPowerPlants.bind(this);
+      const something = this.powerPlantService.searchPowerPlants(powerPlantSearchParams, this.currentPage);
+      alert(something);
+      return something.do(this.processData);
+    }
   }
 
   private processData = (newPowerPlants) => {
-    alert(newPowerPlants);
     this.currentPage++;
+    alert(newPowerPlants);
     // this.powerPlants = this.powerPlants.concat(newPowerPlants.json());
-    this.powerPlants = this.powerPlants.concat(newPowerPlants);
+    // this.powerPlants = this.powerPlants.concat(newPowerPlants);
+    setTimeout(() => this.powerPlants = this.powerPlants.concat(newPowerPlants));
   }
-
+/*
   allPowerPlants(onlyActive: boolean = false, page: number = 1): void {
     this.powerPlantService.allPowerPlants(onlyActive, page).subscribe(result => {
       this.powerPlants = <PowerPlant[]> result;
     });
-  }
+  } */
 }

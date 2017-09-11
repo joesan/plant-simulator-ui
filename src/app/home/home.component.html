@@ -5,7 +5,7 @@
       <div class="col-md-11 col-xs-10">
         <h2>Search</h2>
         <hr>
-        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.valid && searchPowerPlants()" #f="ngForm" novalidate>
+        <form class="row" name="powerPlantSearchForm" (ngSubmit)="f.valid && emptyAndBindNew(); searchPowerPlants()" #f="ngForm" novalidate>
           <div class="form-group col-xs-3" >
             <label for="powerPlantName">PowerPlant Name</label>
             <input type="text" class="form-control-small" [ngClass]="{ 'has-error': f.submitted && !powerPlantName.valid }" name="powerPlantName" [(ngModel)]="model.powerPlantName" #powerPlantName="ngModel" />
