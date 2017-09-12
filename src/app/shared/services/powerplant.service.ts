@@ -9,7 +9,7 @@ import {PowerPlantSearchParams} from '../models/powerplantsearchparams.model';
 export class PowerPlantService {
   // represents the URL's
   allPowerPlantsURL = 'powerPlants';
-  powerPlants: PowerPlant[];
+  // powerPlants: PowerPlant[];
   constructor (
     private apiService: ApiService
   ) {}
@@ -23,7 +23,7 @@ export class PowerPlantService {
   }
 
   private generateData() {
-    const powerPlantArray: PowerPlant[] = [];
+    let powerPlantArray: PowerPlant[] = [];
     for (let i = 0; i < 20; i++) {
       if (i % 2 === 0) {
         const p: PowerPlant = {
@@ -74,6 +74,7 @@ export class PowerPlantService {
       params.push(`name=${searchParams.powerPlantName}`);
     }
     alert(params.join('&'));
+    alert('generated data ' + this.generateData());
     // return this.apiService.get(`${this.allPowerPlantsURL}?${params.join('&')}`);
     return Observable.of(this.generateData());
   }
