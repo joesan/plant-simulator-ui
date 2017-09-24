@@ -3,7 +3,7 @@
 ### [Demo](TODO: Link it!)
 
 # plant-simulator-ui
-TODO
+Web interface to visualize the operational status of a PowerPlant
 
 ## Dependencies
 
